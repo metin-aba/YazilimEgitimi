@@ -1,0 +1,15 @@
+GitHub, birçok geliştiricinin projelerini paylaşabileceği ve işbirliği yapabileceği popüler bir platformdur. Bu platformda bir repo (repository) oluşturabilir, güncelleyebilir ve başkalarıyla paylaşabilirsiniz. İşte GitHub'ta repo işlemleri hakkında temel bilgiler:
+
+Repo Oluşturma: GitHub hesabınızda oturum açtıktan sonra, sağ üst köşedeki "+" işaretine tıklayarak yeni bir repo oluşturabilirsiniz. Repo oluştururken adını, açıklamasını ve diğer gerekli bilgileri belirtmeniz gerekmektedir.
+
+Repo Klonlama: Bir repo'yu bilgisayarınıza klonlayabilirsiniz. Bunun için, ilgili repo sayfasında bulunan "Code" veya "Clone" düğmesine tıklayarak kopyalama bağlantısını alabilirsiniz. Ardından, yerel bir klasörde terminali açarak git clone <repo-linki> komutunu kullanarak repo'yu klonlayabilirsiniz.
+
+Değişiklik Yapma ve Commit Etme: Klonladığınız bir repo'da değişiklikler yapabilirsiniz. Dosyalara veya kodlara değişiklik yaptıktan sonra, bu değişiklikleri kaydetmek için git add <dosya> komutunu kullanarak değişiklikleri takip etmelisiniz. Ardından, git commit -m "Değişiklik açıklaması" komutuyla değişiklikleri yerel olarak kaydedebilirsiniz.
+
+Branch Oluşturma ve Birleştirme: GitHub'da farklı branch'ler (dal) oluşturarak yeni özellikler ekleyebilir veya hataları düzeltebilirsiniz. Bunun için git branch <branch-adı> komutunu kullanarak yeni bir branch oluşturabilirsiniz. Ardından, git checkout <branch-adı> komutuyla oluşturduğunuz branch'e geçiş yapabilirsiniz. Değişiklikleri yaparken ve kaydederken bu branch'i kullanabilirsiniz. Daha sonra, değişiklikleri ana branch ile birleştirebilirsiniz (git merge komutu).
+
+Push ve Pull İşlemleri: Yereldeki değişiklikleri uzak GitHub repo'ya göndermek için git push komutunu kullanabilirsiniz. Bu, diğer geliştiricilerin değişiklikleri görebilmesini sağlar. Aynı şekilde, GitHub üzerinde yapılan değişiklikleri yerel repo'ya çekmek için git pull komutunu kullanabilirsiniz.
+
+Issue Oluşturma: GitHub'ta bir repo ile ilgili bir sorun bildirmek veya bir öneri yapmak için "Issues" bölümünü kullanabilirsiniz. Yeni bir issue oluşturarak sorunu veya öneriyi ayrıntılı olarak açıklayabilir ve repo sahibi veya diğer katkıda bulunanlarla iletişim kurabilirsiniz.
+
+Bu temel işlemler, GitHub'ta repo kullanımı için önemli adımları kapsamaktadır. GitHub'ın sunduğu diğer özellikler arasında pull request oluşturma, proje tahtası (project board) kullanma ve işbirliği yapma gibi farklı olanaklar da bulunmaktadır. Daha fazla ayrıntı için GitHub'ın kendi belgelerine ve rehberlerine başvurmanızı öneririm.
