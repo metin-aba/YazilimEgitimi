@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bill Gates'in Harcamaları</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        #balance {
+            margin-bottom: 20px;
+        }
+
+        #balanceAmount {
+            font-weight: bold;
+            color: green;
+        }
+
+        #products, #purchases {
+            width: 50%;
+            margin: 0 auto;
+        }
+
+        #products ul, #purchases ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        #products li, #purchases li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bill Gates'in Harcamaları</h1>
+
+    <div id="balance">
+        <h2>Bakiye: $<span id="balanceAmount">100,000,000,000</span></h2>
+    </div>
+
+    <div id="products">
+        <h2>Ürünler</h2>
+        <ul id="productList">
+            <!-- Ürünler burada listelenecek -->
+        </ul>
+    </div>
+
+    <div id="purchases">
+        <h2>Satın Alınan Ürünler</h2>
+        <ul id="purchaseList">
+            <!-- Satın alınan ürünler burada listelenecek -->
+        </ul>
+    </div>
+
+    <script>
+        // Ürünlerin verilerini bir dizi olarak tanımlayalım
+        const productsData = [
+            { name: 'Hayali Ürün 1', price: 1000000 },
+            { name: 'Hayali Ürün 2', price: 500000 },
+            { name: 'Hayali Ürün 3', price: 2000000 },
+            // Diğer ürünler...
+        ];
+
+        // Başlangıç bakiyesi
+        let balance = 100000000000;
+
+        // Ürünleri listeleme fonksiyonu
+        function listProducts() {
+            const productList = document.getElementById('productList');
+            productList.innerHTML = '';
+
+            productsData.forEach((product, index) => {
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `
+                    <span>${product.name}</span>
+                    <span>$${product.price.toLocaleString()}</span>
+                    <button onclick="buyProduct(${index})" ${product.price > balance ? 'disabled' : ''}>Buy</button>
+                    <button onclick="sellProduct(${index})" ${getProductQuantity(index) > 0 ? '' : 'disabled'}>Sell</button>
+                `;
+
+                productList.appendChild(listItem);
+            });
+        }
+
+        // Satın alınan ürünleri listeleme fonksiyonu
+        function listPurchases() {
+            const purchaseList = document.getElementById('purchaseList');
+            purchaseList.innerHTML = '';
+
+            productsData.forEach((product, index) => {
+                const quantity = getProductQuantity(index);
+                if (quantity > 0) {
+                    const listItem = document.createElement('li');
+                    listItem.innerHTML = `
+                        <span>${product.name}</span>
+                        <span>Quantity: ${quantity}</span>
+                        <span>Total: $${(product.price * quantity).toLocaleString()}</span>
+                    `;
+
+                    purchaseList.appendChild(listItem);
+                }
+            });
+        }
+
+        // Ürün miktarını getirme fonksiyonu
+        function getProductQuantity(index) {
+            const quantity = localStorage.getItem(`product_${index}`);
+            return quantity ? parseInt(quantity) : 0;
+        }
+
+        // Ürün satın alma fonksiyonu
+        function buyProduct(index) {
+            const product = productsData[index];
+            if (product.price <= balance) {
+                balance -= product.price;
+                const quantity = getProductQuantity(index);
+                localStorage.setItem(`product_${index}`, quantity + 1);
+                document.getElementById('balanceAmount').textContent = balance.toLocaleString();
+                listProducts();
+                listPurchases();
+            } else {
+                alert('Yetersiz bakiye!');
+            }
+        }
+
+        // Ürün satma fonksiyonu
+        function sellProduct(index) {
+            const quantity = getProductQuantity(index);
+            if (quantity > 0) {
+                const product = productsData[index];
+                balance += product.price;
+                localStorage.setItem(`product_${index}`, quantity - 1);
+                document.getElementById('balanceAmount').textContent = balance.toLocaleString();
+                listProducts();
+                listPurchases();
+            }
+        }
+
+        // Uygulama başlatıldığında ürünleri ve satın alınanları listele
+        listProducts();
+        listPurchases();
+    </script>
+</body>
+</html>
